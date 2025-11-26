@@ -1,9 +1,10 @@
+import HeroGallery from "@/features/movies/components/hero-galary/HeroGallery";
 import HeroStats from "./HeroStats";
 
 export default function Hero() {
   return (
     <section className="flex w-full justify-center p-6 md:p-12">
-      <div className="lg:flex-1">
+      <div className="lg:flex-2">
         <h1>Discover your next favorite movie.</h1>
         <p className="max-w-xl text-sm text-slate-300 sm:text-base mt-10 mb-10">
           Search, explore, and build your watchlist with real-time movie data.
@@ -20,8 +21,8 @@ export default function Hero() {
         </div>
         <HeroStats />
       </div>
-      <div className="hidden lg:flex lg:flex-1">
-        <img src="" alt="" />
+      <div className="hidden lg:flex lg:flex-2">
+        <HeroGallery posters={[]} />
       </div>
     </section>
   );

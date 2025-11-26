@@ -23,7 +23,8 @@
       "@/*": ["src/*"],
       "@features/*": ["src/features/*"],
       "@components/*": ["src/components/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@assets/*": ["public/assets/*"]
     }
   },
   "include": [
