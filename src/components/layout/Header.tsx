@@ -2,6 +2,7 @@
 import { Film } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 type Page = "home" | "explore" | "pricing" | "about";
 
@@ -27,31 +28,34 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => setCurrentPage("explore")}
-              className={`transition-colors duration-200 ${
+              className={clsx(
+                "transition-colors duration-200",
                 currentPage === "explore"
                   ? "text-white hover:cursor-default"
                   : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              }`}
+              )}
             >
               Explore
             </button>
             <button
               onClick={() => setCurrentPage("pricing")}
-              className={`transition-colors duration-200 ${
+              className={clsx(
+                "transition-colors duration-200",
                 currentPage === "pricing"
                   ? "text-white hover:cursor-default"
                   : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              }`}
+              )}
             >
               Pricing
             </button>
             <button
               onClick={() => setCurrentPage("about")}
-              className={`transition-colors duration-200 ${
+              className={clsx(
+                "transition-colors duration-200",
                 currentPage === "about"
                   ? "text-white hover:cursor-default"
                   : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              }`}
+              )}
             >
               About
             </button>
@@ -65,9 +69,7 @@ export function Header() {
             >
               Sign In
             </button>
-            <button
-              className="hover:cursor-pointer px-6 py-2.5 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-lg transition-all duration-200 shadow-lg shadow-[#e11d48]/20 hover:shadow-xl hover:shadow-[#e11d48]/30"
-            >
+            <button className="hover:cursor-pointer px-6 py-2.5 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-lg transition-all duration-200 shadow-lg shadow-[#e11d48]/20 hover:shadow-xl hover:shadow-[#e11d48]/30">
               Get Started
             </button>
           </div>

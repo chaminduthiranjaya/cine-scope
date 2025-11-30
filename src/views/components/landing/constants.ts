@@ -1,4 +1,4 @@
-import { PosterLayoutItem } from "./heroGallery.interface";
+import { PosterLayoutItem } from "../../Interfaces/heroGallery.interface";
 
 export const POSTER_LAYOUT: PosterLayoutItem[] = [
   {

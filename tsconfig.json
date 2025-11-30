@@ -24,7 +24,8 @@
       "@features/*": ["src/features/*"],
       "@components/*": ["src/components/*"],
       "@api/*": ["src/api/*"],
-      "@assets/*": ["public/assets/*"]
+      "@assets/*": ["public/assets/*"],
+      "@views/*": ["src/views/*"]
     }
   },
   "include": [
