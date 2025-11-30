@@ -1,0 +1,18 @@
+import TrendingMovie from "./TrendingMovie";
+
+export default function TrendingMoviesList() {
+  return (
+    <section className="py-20 bg-gradient-to-b from-[#0f0f12] via-[#111827] to-[#0f0f12]">
+      <div className="flex w-full overflow-x-auto scrollbar-hide gap-6">
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+        <TrendingMovie />
+      </div>
+    </section>
+  );
+}
