@@ -1,8 +1,8 @@
 "use client";
-import { Film } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { Film } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type Page = "home" | "explore" | "pricing" | "about";
 
@@ -10,7 +10,7 @@ export function Header() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const router = useRouter();
   return (
-    <header className="h-20 w-full z-50 bg-[#0f0f12]/80 backdrop-blur-xl border-b border-[#334155]/30">
+    <header className="sticky top-0 h-20 w-full z-50 bg-[#0f0f12]/80 backdrop-blur-xl border-b border-[#334155]/30">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}

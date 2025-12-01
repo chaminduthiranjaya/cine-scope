@@ -1,8 +1,11 @@
+import { Movie } from "@/domain/movies/api/movie.interface";
+import { getHeroGalleryPosters } from "@/domain/movies/utils/movie.util";
 import HeroGallery from "./HeroGallery";
 import HeroStats from "./HeroStats";
 import TrendingMoviesList from "./trending/TrendingMoviesList";
 
-export default function Hero() {
+export default function Hero({ trendingMovies }: { trendingMovies: Movie[] }) {
+  const galleryPosrters = getHeroGalleryPosters(trendingMovies, 4);
   return (
     <section className="flex flex-col w-full max-w-[1400px] justify-center p-6 md:p-12">
       <div className="flex flex-row">
@@ -24,10 +27,10 @@ export default function Hero() {
           <HeroStats />
         </div>
         <div className="hidden lg:flex lg:flex-2">
-          <HeroGallery posters={[]} />
+          <HeroGallery posters={galleryPosrters} />
         </div>
       </div>
-      <TrendingMoviesList />
+      <TrendingMoviesList trendingMovies={trendingMovies} />
     </section>
   );
 }

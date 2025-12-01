@@ -1,16 +1,16 @@
 "use client";
+import { Movie } from "@/domain/movies/api/movie.interface";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
-export default function TrendingMovie() {
+export default function TrendingMovie({ movie }: { movie: Movie }) {
   return (
-    <div 
-    className=" flex-shrink-0 w-64 group cursor-pointer">
+    <div className=" flex-shrink-0 w-64 group cursor-pointer">
       <div className="relative mb-4 rounded-2xl overflow-hidden">
         <div className="aspect-[2/3] relative">
           <Image
-            src="/images/movie_poster_fallback.png"
-            alt="Movie poster"
+            src={movie.poster}
+            alt={`${movie.title} movie poster`}
             fill
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
           />
@@ -19,7 +19,7 @@ export default function TrendingMovie() {
 
         <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-lg flex items-center gap-1.5">
           <Star className="w- h-4 text-yellow-400 fill-yellow-400" />
-          <span className="text-sm">{12}</span>
+          <span className="text-sm">{movie.voteAverage}</span>
         </div>
 
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -30,9 +30,9 @@ export default function TrendingMovie() {
       </div>
 
       <h3 className="mb-1 group-hover:text-[#e11d48] transition-colors">
-        Movie Name Goes Here
+        {movie.title}
       </h3>
-      <p className="text-sm text-[#94a3b8]">2025</p>
+      <p className="text-sm text-[#94a3b8]">{movie.releaseYear}</p>
     </div>
   );
 }
