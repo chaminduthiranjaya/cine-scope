@@ -17,14 +17,16 @@ export async function getTrendingMovies(
 ): Promise<Movie[]> {
   const data = await callTMDB<TMDBTrendingResponse>(
     `trending/movie/${timeWindow}`,
-    { language: DEFAULT_LANGUAGE },
-    "GET",
     {
-      next: {
-        revalidate: timeWindow === "day" ? 3600 : 86400, // 1 hour or 24 hours
-        tags: [`trending-movies-${timeWindow}`], // For on-demand revalidation
+      params: { language: DEFAULT_LANGUAGE },
+      fetch: {
+        next: {
+          revalidate: timeWindow === "day" ? 3600 : 86400,
+          tags: [`trending-movies-${timeWindow}`],
+        },
       },
     }
   );
+
   return data.results?.map(formatMovie) ?? [];
 }

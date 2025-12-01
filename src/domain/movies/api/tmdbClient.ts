@@ -7,14 +7,34 @@ if (!TMDB_BEARER) {
   throw new Error("TMDB_BEARER_TOKEN is not set");
 }
 
-type TMDBParams = Record<string, string | number | boolean | undefined>;
+interface TMDBParams {
+  [key: string]: string | number | boolean | undefined;
+}
+
+interface TMDBRequestOptions {
+  params?: TMDBParams;
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  body?: any;
+  fetch?: RequestInit & {
+    next?: {
+      revalidate?: number;
+      tags?: string[];
+    };
+  };
+}
 
 export async function callTMDB<TResponse>(
   path: string,
-  params: TMDBParams = {},
-  method: "GET" | "POST" | "PUT" | "DELETE" = "GET",
-  body: any = {}
+  options: TMDBRequestOptions = {}
 ): Promise<TResponse> {
+  const {
+    params = {},
+    method = "GET",
+    body,
+    fetch: fetchOptions = {},
+  } = options;
+
+  // Build URL
   const url = new URL(`${TMDB_API_URL}/${path}`);
 
   Object.entries(params).forEach(([key, value]) => {
@@ -23,13 +43,27 @@ export async function callTMDB<TResponse>(
     }
   });
 
-  const res = await fetch(url.toString(), {
+  // Base fetch config
+  const baseInit: RequestInit = {
     method,
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${TMDB_BEARER}`,
+      ...(fetchOptions.headers || {}),
     },
-    ...(body && method !== "GET" && { body: JSON.stringify(body) }),
+  };
+
+  if (body && method !== "GET") {
+    baseInit.body = JSON.stringify(body);
+  }
+
+  const res = await fetch(url.toString(), {
+    ...baseInit,
+    ...fetchOptions,
+    headers: {
+      ...(baseInit.headers || {}),
+      ...(fetchOptions.headers || {}),
+    },
   });
 
   if (!res.ok) {
