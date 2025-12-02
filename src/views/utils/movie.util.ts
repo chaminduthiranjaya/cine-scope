@@ -1,4 +1,4 @@
-import { ApiMovie, Movie } from "../api/movie.interface";
+import { ApiMovie, Movie } from "../../lib/interfaces/movie.interface";
 const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
 /**
@@ -29,7 +29,10 @@ export function formatMovie(movie: ApiMovie): Movie {
  * @param count The number of posters to get
  * @returns An array of posters
  */
-export function getHeroGalleryPosters(movies: Movie[], count: number): string[] {
+export function getHeroGalleryPosters(
+  movies: Movie[],
+  count: number
+): string[] {
   if (!movies?.length) return [];
 
   const validPosters = movies.filter((m) => m.poster).map((m) => m.poster);

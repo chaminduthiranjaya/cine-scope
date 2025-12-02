@@ -1,4 +1,4 @@
-import { Movie } from "@/domain/movies/api/movie.interface";
+import { Movie } from "@/lib/interfaces/movie.interface";
 import TrendingMovie from "./TrendingMovie";
 
 export default function TrendingMoviesList({

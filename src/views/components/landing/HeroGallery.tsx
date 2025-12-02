@@ -1,10 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import {
-  ErrorMap,
-  HeroGalleryProps,
-} from "../../Interfaces/heroGallery.interface";
+import { ErrorMap, HeroGalleryProps } from "./Interfaces/heroGallery.interface";
 import { POSTER_LAYOUT } from "./constants";
 
 export default function HeroGallery({ posters }: HeroGalleryProps) {

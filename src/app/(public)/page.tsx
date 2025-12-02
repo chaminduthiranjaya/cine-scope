@@ -1,5 +1,5 @@
-import { Movie } from "@/domain/movies/api/movie.interface";
-import { getTrendingMovies } from "@/domain/movies/api/movies.server";
+import { Movie } from "@/lib/interfaces/movie.interface";
+import { getTrendingMovies } from "@/lib/api/movies.server";
 import Hero from "@/views/components/landing/Hero";
 
 export default async function Home() {

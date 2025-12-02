@@ -1,5 +1,5 @@
 "use client";
-import { Movie } from "@/domain/movies/api/movie.interface";
+import { Movie } from "@/lib/interfaces/movie.interface";
 import { Star } from "lucide-react";
 import Image from "next/image";
 

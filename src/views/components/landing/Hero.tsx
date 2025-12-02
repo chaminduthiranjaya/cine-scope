@@ -1,5 +1,5 @@
-import { Movie } from "@/domain/movies/api/movie.interface";
-import { getHeroGalleryPosters } from "@/domain/movies/utils/movie.util";
+import { Movie } from "@/lib/interfaces/movie.interface";
+import { getHeroGalleryPosters } from "@/views/utils/movie.util";
 import HeroGallery from "./HeroGallery";
 import HeroStats from "./HeroStats";
 import TrendingMoviesList from "./trending/TrendingMoviesList";

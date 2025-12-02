@@ -1,6 +1,10 @@
 import "server-only";
-import { formatMovie } from "../utils/movie.util";
-import type { ApiMovie, Movie, PagedResponse } from "./movie.interface";
+import { formatMovie } from "../../views/utils/movie.util";
+import type {
+  ApiMovie,
+  Movie,
+  PagedResponse,
+} from "../interfaces/movie.interface";
 import { callTMDB } from "./tmdbClient";
 
 type TMDBTrendingResponse = PagedResponse<ApiMovie>;
