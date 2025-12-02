@@ -1,4 +1,3 @@
-import { Header } from "@/components/layout/Header";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";

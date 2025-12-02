@@ -23,13 +23,13 @@ export default function TrendingMovie({ movie }: { movie: Movie }) {
         </div>
 
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="w-full py-2.5 bg-[#e11d48] hover:bg-[#be123c] rounded-lg transition-colors">
+          <button className="w-full py-2.5 bg-rose-600 hover:bg-[#be123c] rounded-lg transition-colors">
             Add to Watchlist
           </button>
         </div>
       </div>
 
-      <h3 className="mb-1 group-hover:text-[#e11d48] transition-colors">
+      <h3 className="mb-1 group-hover:text-rose-600 transition-colors">
         {movie.title}
       </h3>
       <p className="text-sm text-[#94a3b8]">{movie.releaseYear}</p>

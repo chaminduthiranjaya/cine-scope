@@ -1,4 +1,5 @@
-import { Header } from "@/components/layout/Header";
+import Footer from "@/lib/components/layout/Footer";
+import { Header } from "@/lib/components/layout/Header";
 import type { ReactNode } from "react";
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
@@ -6,6 +7,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
     <>
       <Header />
       {children}
+      <Footer />
     </>
   );
 }
