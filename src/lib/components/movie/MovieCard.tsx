@@ -1,11 +1,12 @@
-"use client";
-import { Movie } from "@/lib/interfaces/movie.interface";
+import { MovieCardProps } from "@/lib/interfaces/movie.interface";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
-export default function TrendingMovie({ movie }: { movie: Movie }) {
+
+
+export default function MovieCard({ movie, displayAddToWatchlistButton = false }: MovieCardProps) {
   return (
-    <div className=" flex-shrink-0 w-64 group cursor-pointer">
+    <div className="flex-shrink-0 w-60 group cursor-pointer">
       <div className="relative mb-4 rounded-2xl overflow-hidden">
         <div className="aspect-[2/3] relative">
           <Image
@@ -23,9 +24,11 @@ export default function TrendingMovie({ movie }: { movie: Movie }) {
         </div>
 
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button className="w-full py-2.5 bg-rose-600 hover:bg-[#be123c] rounded-lg transition-colors">
-            Add to Watchlist
-          </button>
+          {displayAddToWatchlistButton && (
+            <button className="w-full py-2.5 bg-rose-600 hover:bg-[#be123c] rounded-lg transition-colors">
+              Add to Watchlist
+            </button>
+          )}
         </div>
       </div>
 

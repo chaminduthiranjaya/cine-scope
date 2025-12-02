@@ -3,11 +3,10 @@ import { formatMovie } from "../../views/utils/movie.util";
 import type {
   ApiMovie,
   Movie,
+  MovieListResponse,
   PagedResponse,
 } from "../interfaces/movie.interface";
 import { callTMDB } from "./tmdbClient";
-
-type TMDBTrendingResponse = PagedResponse<ApiMovie>;
 
 const DEFAULT_LANGUAGE = "en-US";
 
@@ -19,7 +18,7 @@ const DEFAULT_LANGUAGE = "en-US";
 export async function getTrendingMovies(
   timeWindow: "day" | "week" = "week"
 ): Promise<Movie[]> {
-  const data = await callTMDB<TMDBTrendingResponse>(
+  const data = await callTMDB<PagedResponse<ApiMovie>>(
     `trending/movie/${timeWindow}`,
     {
       params: { language: DEFAULT_LANGUAGE },
@@ -33,4 +32,19 @@ export async function getTrendingMovies(
   );
 
   return data.results?.map(formatMovie) ?? [];
+}
+
+export async function getMovieList(
+  page: number = 1
+): Promise<MovieListResponse> {
+  const data = await callTMDB<PagedResponse<ApiMovie>>(`movie/popular`, {
+    params: { language: DEFAULT_LANGUAGE, page },
+  });
+
+  return {
+    page: data.page,
+    movies: data.results?.map(formatMovie) ?? [],
+    totalPages: data.total_pages,
+    totalResults: data.total_results,
+  };
 }

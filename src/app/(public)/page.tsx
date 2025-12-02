@@ -6,7 +6,7 @@ export default async function Home() {
   const trendingMovies: Movie[] = await getTrendingMovies();
 
   return (
-    <div className="flex min-h-screen justify-center  font-sans">
+    <div className="flex min-h-screen justify-center font-sans">
       <Hero trendingMovies={trendingMovies} />
     </div>
   );

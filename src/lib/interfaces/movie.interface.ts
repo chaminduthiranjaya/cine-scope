@@ -34,6 +34,18 @@ export interface PagedResponse<T> {
   total_results: number;
 }
 
+export interface MovieListResponse {
+  page: number;
+  movies: Movie[];
+  totalPages: number;
+  totalResults: number;
+}
+
 export interface TMDBParams {
   [key: string]: string | number | boolean | undefined;
+}
+
+export interface MovieCardProps {
+  movie: Movie;
+  displayAddToWatchlistButton?: boolean;
 }

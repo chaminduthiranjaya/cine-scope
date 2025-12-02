@@ -25,7 +25,8 @@
       "@components/*": ["src/lib/components/*"],
       "@api/*": ["src/api/*"],
       "@assets/*": ["public/assets/*"],
-      "@views/*": ["src/views/*"]
+      "@views/*": ["src/views/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
   "include": [
