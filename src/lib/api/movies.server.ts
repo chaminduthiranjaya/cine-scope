@@ -62,7 +62,7 @@ export async function getMovieList({
     return {
       page: data.page,
       movies: data.results?.map(formatMovie) ?? [],
-      totalPages: data.total_pages,
+      totalPages: data.total_pages > 500 ? 500 : data.total_pages, // Free API limitation, only allows to paginate 500 pages
       totalResults: data.total_results,
     };
   } catch (error) {
