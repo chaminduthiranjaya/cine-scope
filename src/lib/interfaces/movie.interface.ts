@@ -49,3 +49,14 @@ export interface MovieCardProps {
   movie: Movie;
   displayAddToWatchlistButton?: boolean;
 }
+
+export interface GetMovieListParams {
+  page: number;
+  query?: string;
+};
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+};

@@ -2,6 +2,7 @@ import "server-only";
 import { formatMovie } from "../../views/utils/movie.util";
 import type {
   ApiMovie,
+  GetMovieListParams,
   Movie,
   MovieListResponse,
   PagedResponse,
@@ -18,33 +19,59 @@ const DEFAULT_LANGUAGE = "en-US";
 export async function getTrendingMovies(
   timeWindow: "day" | "week" = "week"
 ): Promise<Movie[]> {
-  const data = await callTMDB<PagedResponse<ApiMovie>>(
-    `trending/movie/${timeWindow}`,
-    {
-      params: { language: DEFAULT_LANGUAGE },
-      fetch: {
-        next: {
-          revalidate: timeWindow === "day" ? 3600 : 86400,
-          tags: [`trending-movies-${timeWindow}`],
+  try {
+    const data = await callTMDB<PagedResponse<ApiMovie>>(
+      `trending/movie/${timeWindow}`,
+      {
+        params: { language: DEFAULT_LANGUAGE },
+        fetch: {
+          next: {
+            revalidate: timeWindow === "day" ? 3600 : 86400,
+            tags: [`trending-movies-${timeWindow}`],
+          },
         },
-      },
-    }
-  );
+      }
+    );
 
-  return data.results?.map(formatMovie) ?? [];
+    return data.results?.map(formatMovie) ?? [];
+  } catch (error) {
+    console.error("Error fetching trending movies:", error);
+    return [];
+  }
 }
 
-export async function getMovieList(
-  page: number = 1
-): Promise<MovieListResponse> {
-  const data = await callTMDB<PagedResponse<ApiMovie>>(`movie/popular`, {
-    params: { language: DEFAULT_LANGUAGE, page },
-  });
-
-  return {
-    page: data.page,
-    movies: data.results?.map(formatMovie) ?? [],
-    totalPages: data.total_pages,
-    totalResults: data.total_results,
-  };
+export async function getMovieList({
+  page,
+  query,
+}: GetMovieListParams): Promise<MovieListResponse> {
+  try {
+    const isSearch = !!query && query.trim().length > 0;
+    const data = await callTMDB<PagedResponse<ApiMovie>>(
+      isSearch ? "search/movie" : "movie/popular",
+      {
+        params: {
+          query,
+          page,
+          language: DEFAULT_LANGUAGE,
+        },
+        fetch: {
+          next: { revalidate: isSearch ? 0 : 3600, tags: ["movie-list"] }, // tags are used to invalidate the cache
+        },
+      }
+    );
+    return {
+      page: data.page,
+      movies: data.results?.map(formatMovie) ?? [],
+      totalPages: data.total_pages,
+      totalResults: data.total_results,
+    };
+  } catch (error) {
+    console.error("Error fetching movie list:", error);
+    return {
+      page: 1,
+      movies: [],
+      totalPages: 0,
+      totalResults: 0,
+    };
+  }
 }

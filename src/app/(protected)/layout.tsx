@@ -1,11 +1,12 @@
 import { Header } from "@/lib/components/layout/Header";
+import { QueryProvider } from "@/lib/providers/QueryProvider";
 import type { ReactNode } from "react";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      {children}
+      <QueryProvider>{children}</QueryProvider>
     </>
   );
 }
