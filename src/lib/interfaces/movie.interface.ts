@@ -48,6 +48,7 @@ export interface TMDBParams {
 export interface MovieCardProps {
   movie: Movie;
   displayAddToWatchlistButton?: boolean;
+  useBlurPlaceholder?: boolean;
 }
 
 export interface GetMovieListParams {

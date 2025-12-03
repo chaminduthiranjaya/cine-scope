@@ -1,18 +1,31 @@
+"use client";
 import { MovieCardProps } from "@/lib/interfaces/movie.interface";
+import { shimmer, toBase64 } from "@/lib/shimmer";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+import placeholder from "../../../../public/images/movie_poster_fallback.png";
 
-
-
-export default function MovieCard({ movie, displayAddToWatchlistButton = false }: MovieCardProps) {
+export default function MovieCard({
+  movie,
+  displayAddToWatchlistButton = false,
+  useBlurPlaceholder = false,
+}: MovieCardProps) {
+  const [isErrLoad, setIsErrLoad] = useState(false);
   return (
     <div className="flex-shrink-0 w-60 group cursor-pointer">
       <div className="relative mb-4 rounded-2xl overflow-hidden">
         <div className="aspect-[2/3] relative">
           <Image
-            src={movie.poster}
+            src={isErrLoad ? placeholder : movie.poster}
             alt={`${movie.title} movie poster`}
-            fill
+            width={300}
+            height={450}
+            placeholder={useBlurPlaceholder ? "blur" : "empty"}
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(
+              shimmer(300, 450)
+            )}`}
+            onError={() => setIsErrLoad(true)}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

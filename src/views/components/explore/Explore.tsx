@@ -54,18 +54,15 @@ export default function Explore({ initialData }: ExploreProps) {
       {isFetching ? (
         <div className="flex flex-wrap gap-6 mb-16">
           {Array.from({ length: 5 }).map((_, idx) => (
-            <div className="flex-shrink-0 w-60">
-              <div
-                key={idx}
-                className=" relative mb-4 rounded-2xl flex aspect-[2/3] rounded-xl bg-slate-800/60 animate-pulse"
-              />
+            <div key={idx} className="flex-shrink-0 w-60">
+              <div className=" relative mb-4 rounded-2xl flex aspect-[2/3] rounded-xl bg-slate-800/60 animate-pulse" />
             </div>
           ))}
         </div>
       ) : (
         <div id="movie-list-container" className="flex flex-wrap gap-6 mb-16">
           {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard key={movie.id} movie={movie} useBlurPlaceholder={true} />
           ))}
         </div>
       )}
