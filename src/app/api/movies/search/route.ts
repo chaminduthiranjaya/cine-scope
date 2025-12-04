@@ -3,7 +3,7 @@ import { getMovieList } from "@/lib/api/movies.server";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const searchKey = searchParams.get("searchKey") ?? "";
+  const query = (searchParams.get("searchKey") ?? "").trim();
   const pageParam = searchParams.get("page") ?? "1";
 
   const page = Number(pageParam);
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
   const data = await getMovieList({
     page: safePage,
-    query: searchKey.trim(),
+    query,
   });
 
   return NextResponse.json(data);

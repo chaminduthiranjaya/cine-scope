@@ -1,13 +1,12 @@
 "use client";
 
-import type { MovieListResponse } from "@/lib/interfaces/movie.interface";
+import type {
+  MovieListResponse,
+  UseMovieListQueryParams,
+} from "@/lib/interfaces/movie.interface";
 import { useQuery } from "@tanstack/react-query";
 
-type UseMovieListQueryParams = {
-  searchKey: string;
-  page: number;
-  initialData?: MovieListResponse;
-};
+
 
 export function useMovieListQuery({
   searchKey,
@@ -18,7 +17,7 @@ export function useMovieListQuery({
     queryKey: ["movies", { searchKey, page }],
     queryFn: async ({ signal }) => {
       const params = new URLSearchParams({
-        ...(searchKey && { q: searchKey }),
+        ...(searchKey && { searchKey }),
         page: String(page),
       });
 
