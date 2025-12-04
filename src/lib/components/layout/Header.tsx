@@ -1,24 +1,36 @@
 "use client";
 import clsx from "clsx";
 import { Film } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-
-type Page = "home" | "explore" | "pricing" | "about";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
-  const [currentPage, setCurrentPage] = useState<Page>("home");
+  const pathname = usePathname();
   const router = useRouter();
+  const { data: session, status } = useSession();
+  const isAuthenticated = status === "authenticated";
+
+  function handleAuthClick() {
+    if (isAuthenticated) {
+      signOut({ callbackUrl: "/" });
+    } else {
+      router.push("/login");
+    }
+  }
+
   return (
     <header className="sticky top-0 h-20 w-full z-50 bg-[#0f0f12]/80 backdrop-blur-xl border-b border-slate-700/30">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button
-            onClick={() => setCurrentPage("home")}
+            onClick={() => {
+              router.push("/");
+            }}
             className="hover:cursor-pointer flex items-center gap-2.5 hover:opacity-80 transition-opacity"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-[#be123c] flex items-center justify-center shadow-lg shadow-rose-600/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 bg-rose-700 flex items-center justify-center shadow-lg shadow-rose-600/20">
               <Film className="w-5 h-5 text-white" />
             </div>
             <span className="text-3xl font-impact">CineScope</span>
@@ -26,52 +38,60 @@ export function Header() {
 
           {/* Center Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => setCurrentPage("explore")}
-              className={clsx(
-                "transition-colors duration-200",
-                currentPage === "explore"
-                  ? "text-white hover:cursor-default"
-                  : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              )}
+            <Link
+              href="/explore"
+              className={clsx("transition-colors duration-200", {
+                "text-white hover:cursor-default": pathname === "/explore",
+                "text-slate-400 hover:text-white hover:cursor-pointer":
+                  pathname !== "/explore",
+              })}
             >
               Explore
-            </button>
-            <button
-              onClick={() => setCurrentPage("pricing")}
-              className={clsx(
-                "transition-colors duration-200",
-                currentPage === "pricing"
-                  ? "text-white hover:cursor-default"
-                  : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              )}
+            </Link>
+            <Link
+              href="/pricing"
+              className={clsx("transition-colors duration-200", {
+                "text-white hover:cursor-default": pathname === "/pricing",
+                "text-slate-400 hover:text-white hover:cursor-pointer":
+                  pathname !== "/pricing",
+              })}
             >
               Pricing
-            </button>
-            <button
-              onClick={() => setCurrentPage("about")}
-              className={clsx(
-                "transition-colors duration-200",
-                currentPage === "about"
-                  ? "text-white hover:cursor-default"
-                  : "text-[#94a3b8] hover:text-white hover:cursor-pointer"
-              )}
+            </Link>
+            <Link
+              href="/about"
+              className={clsx("transition-colors duration-200", {
+                "text-white hover:cursor-default": pathname === "/about",
+                "text-slate-400 hover:text-white hover:cursor-pointer":
+                  pathname !== "/about",
+              })}
             >
               About
-            </button>
+            </Link>
           </nav>
 
           {/* Right Buttons */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => router.push("/login")}
-              className="hover:cursor-pointer hidden sm:block px-5 py-2.5 text-[#94a3b8] hover:text-white transition-colors duration-200"
+              onClick={handleAuthClick}
+              className={clsx(
+                "hover:cursor-pointer hidden sm:block px-5 py-2.5 text-slate-400 hover:text-white transition-colors duration-200",
+                {
+                  "hover:cursor-pointer px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-all duration-200 shadow-lg shadow-rose-600/20 hover:shadow-xl hover:shadow-rose-600/30":
+                    isAuthenticated,
+                }
+              )}
             >
-              Sign In
+              {isAuthenticated ? "Sign Out" : "Sign In"}
             </button>
-            <button className="hover:cursor-pointer px-6 py-2.5 bg-rose-600 hover:bg-[#be123c] text-white rounded-lg transition-all duration-200 shadow-lg shadow-rose-600/20 hover:shadow-xl hover:shadow-rose-600/30">
-              Get Started
-            </button>
+            {!isAuthenticated && (
+              <Link
+                href="/login"
+                className="hover:cursor-pointer px-6 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-all duration-200 shadow-lg shadow-rose-600/20 hover:shadow-xl hover:shadow-rose-600/30"
+              >
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </div>
