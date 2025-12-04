@@ -16,13 +16,15 @@ export function useMovieListQuery({
 }: UseMovieListQueryParams) {
   return useQuery<MovieListResponse>({
     queryKey: ["movies", { searchKey, page }],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       const params = new URLSearchParams({
         ...(searchKey && { q: searchKey }),
         page: String(page),
       });
 
-      const res = await fetch(`/api/movies/search?${params.toString()}`);
+      const res = await fetch(`/api/movies/search?${params.toString()}`, {
+        signal,
+      });
       if (!res.ok) {
         throw new Error("Failed to fetch movies");
       }

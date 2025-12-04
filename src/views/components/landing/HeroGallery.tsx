@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import placeholder from "../../../../../public/images/movie_poster_fallback.png";
+import placeholder from "../../../../public/images/movie_poster_fallback.png";
 import { POSTER_LAYOUT } from "./constants";
 import { ErrorMap, HeroGalleryProps } from "./heroGallery.interface";
 
