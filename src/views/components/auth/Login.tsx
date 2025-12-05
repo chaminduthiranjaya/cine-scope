@@ -26,7 +26,7 @@ export default function LoginView() {
         <div className="w-full max-w-md">
           <button
             onClick={() => router.push("/")}
-            className="flex items-center gap-2 text-slate-400 hover:text-white mb-12 transition-colors group"
+            className="cursor-pointer flex items-center gap-2 text-slate-400 hover:text-white mb-12 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to home</span>
@@ -42,10 +42,9 @@ export default function LoginView() {
           {/* Social Login Buttons */}
           <div className="space-y-3 mb-8">
             <button
-              className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white hover:bg-gray-100 text-gray-900 rounded-xl transition-all duration-200 border-2 border-transparent hover:border-gray-200"
+              className="cursor-pointer w-full flex items-center justify-center gap-3 px-6 py-4 bg-white hover:bg-gray-100 text-gray-900 rounded-xl transition-all duration-200 border-2 border-transparent hover:border-gray-200"
               onClick={() => {
-                const currentUrl = window.location.href;
-                signIn("google", { callbackUrl: currentUrl });
+                signIn("google");
               }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -69,7 +68,7 @@ export default function LoginView() {
               <span>Continue with Google</span>
             </button>
 
-            <button className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-blue-400 hover:bg-blue-500 text-white rounded-xl transition-all duration-200">
+            <button className="cursor-pointer w-full flex items-center justify-center gap-3 px-6 py-4 bg-blue-400 hover:bg-blue-500 text-white rounded-xl transition-all duration-200">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
@@ -132,7 +131,7 @@ export default function LoginView() {
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-slate-700 bg-slate-800 text-rose-600 focus:ring-rose-600 focus:ring-offset-0"
+                  className="cursor-pointer w-4 h-4 rounded border-slate-700 bg-slate-800 text-rose-600 focus:ring-rose-600 focus:ring-offset-0"
                 />
                 <span className="text-sm text-slate-400">Remember me</span>
               </label>
@@ -146,7 +145,7 @@ export default function LoginView() {
 
             <button
               type="submit"
-              className="w-full py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all duration-200 shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40"
+              className="cursor-pointer w-full py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all duration-200 shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40"
             >
               Sign In
             </button>
@@ -154,7 +153,7 @@ export default function LoginView() {
 
           <p className="mt-6 text-center text-slate-400">
             Don't have an account?{" "}
-            <button className="text-rose-600 hover:text-rose-700 transition-colors">
+            <button className="cursor-pointer text-rose-600 hover:text-rose-700 transition-colors">
               Sign up
             </button>
           </p>
