@@ -55,14 +55,14 @@ export async function getMovieList({
           language: DEFAULT_LANGUAGE,
         },
         fetch: {
-          next: { revalidate: isSearch ? 0 : 3600, tags: ["movie-list"] }, // tags are used to invalidate the cache
+          next: { revalidate: isSearch ? 0 : 3600, tags: ["movie-list"] },
         },
       }
     );
     return {
       page: data.page,
       movies: data.results?.map(formatMovie) ?? [],
-      totalPages: data.total_pages > 500 ? 500 : data.total_pages, // Free API limitation, only allows to paginate 500 pages
+      totalPages: data.total_pages > 500 ? 500 : data.total_pages, // TMDB Free API limitation, only allows to paginate 500 pages
       totalResults: data.total_results,
     };
   } catch (error) {

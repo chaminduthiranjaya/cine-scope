@@ -6,8 +6,11 @@ import type {
 } from "@/lib/interfaces/movie.interface";
 import { useQuery } from "@tanstack/react-query";
 
-
-
+/**
+ * Custom hook to fetch movie list based on search key and page number
+ * @param param0 - Object containing search key and page number
+ * @returns - Query object containing movie list data
+ */
 export function useMovieListQuery({
   searchKey,
   page,
@@ -34,5 +37,6 @@ export function useMovieListQuery({
         ? initialData
         : undefined,
     placeholderData: (previous) => previous,
+    staleTime: 60 * 60 * 1000,
   });
 }

@@ -23,6 +23,12 @@ interface TMDBRequestOptions {
   };
 }
 
+/**
+ * Makes a request to the TMDB API
+ * @param path - TMDB API endpoint
+ * @param options - Request options
+ * @returns Promise resolving to response data
+ */
 export async function callTMDB<TResponse>(
   path: string,
   options: TMDBRequestOptions = {}
@@ -34,7 +40,6 @@ export async function callTMDB<TResponse>(
     fetch: fetchOptions = {},
   } = options;
 
-  // Build URL
   const url = new URL(`${TMDB_API_URL}/${path}`);
 
   Object.entries(params).forEach(([key, value]) => {
@@ -43,7 +48,6 @@ export async function callTMDB<TResponse>(
     }
   });
 
-  // Base fetch config
   const baseInit: RequestInit = {
     method,
     headers: {

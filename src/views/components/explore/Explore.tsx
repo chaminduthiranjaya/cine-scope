@@ -89,12 +89,14 @@ export default function Explore({ initialData }: ExploreProps) {
             </div>
           ))}
         </div>
-      ) : (
+      ) : movies.length > 0 ? (
         <div id="movie-list-container" className="flex flex-wrap gap-6 mb-16">
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} useBlurPlaceholder={true} />
           ))}
         </div>
+      ) : (
+        <p>No movies found</p>
       )}
 
       <Pagination
