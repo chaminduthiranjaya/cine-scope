@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../styles/globals.css";
 
 const geistSans = Geist({
@@ -32,7 +33,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${impact.variable} antialiased`}>
         <AuthSessionProvider session={session}>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            {children}
+            <SpeedInsights />
+            {/*Speed Insights in Vercel to Validate Performance*/}
+          </ReduxProvider>
         </AuthSessionProvider>
       </body>
     </html>
