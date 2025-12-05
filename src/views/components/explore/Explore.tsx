@@ -71,7 +71,7 @@ export default function Explore({ initialData }: ExploreProps) {
     >
       <div className="mb-12">
         <h1 className="mb-4">Explore Movies</h1>
-        <p className="text-[#94a3b8]">
+        <p className="text-slate-400">
           Discover your next favorite from our vast collection
         </p>
       </div>

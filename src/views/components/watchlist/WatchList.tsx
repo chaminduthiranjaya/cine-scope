@@ -11,13 +11,13 @@ export default function WatchList() {
     <section className="flex flex-col w-full max-w-[1400px] p-6 md:p-12">
       <div className="mb-12">
         <h1 className="mb-4">Your Watchlist</h1>
-        <p className="text-[#94a3b8]">
+        <p className="text-slate-400">
           All the movies you&apos;ve saved to watch later.
         </p>
       </div>
 
       {movies.length === 0 ? (
-        <p className="text-[#94a3b8]">
+        <p className="text-slate-400">
           Your watchlist is empty. Start adding movies from Explore.
         </p>
       ) : (

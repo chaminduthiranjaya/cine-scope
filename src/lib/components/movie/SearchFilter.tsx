@@ -20,13 +20,13 @@ export default function SearchFilter({ initialValue, onSearchChange }: Props) {
   return (
     <div className="mb-12">
       <div className="relative ">
-        <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-[#94a3b8]" />
+        <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-slate-400" />
         <input
           type="text"
           placeholder="Search for movies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full pl-16 pr-6 py-5 bg-[#1e293b] border-2 border-[#334155] rounded-2xl focus:outline-none focus:border-[#e11d48] transition-colors text-white text-lg"
+          className="w-full pl-16 pr-6 py-5 bg-slate-800 border-2 border-slate-700 rounded-2xl focus:outline-none focus:border-rose-600 transition-colors text-white text-lg"
         />
       </div>
     </div>

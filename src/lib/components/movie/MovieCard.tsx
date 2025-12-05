@@ -58,7 +58,7 @@ export default function MovieCard({
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {displayAddToWatchlistButton && (
             <button
-              className="w-full py-2.5 bg-rose-600 hover:bg-[#be123c] rounded-lg transition-colors"
+              className="w-full py-2.5 bg-rose-600 hover:bg-rose-700 rounded-lg transition-colors"
               onClick={addToWatchlist}
             >
               {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
@@ -70,7 +70,7 @@ export default function MovieCard({
       <h3 className="mb-1 group-hover:text-rose-600 transition-colors">
         {movie.title}
       </h3>
-      <p className="text-sm text-[#94a3b8]">{movie.releaseYear}</p>
+      <p className="text-sm text-slate-400">{movie.releaseYear}</p>
     </div>
   );
 }

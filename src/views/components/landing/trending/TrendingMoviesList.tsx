@@ -7,7 +7,7 @@ export default function TrendingMoviesList({
   trendingMovies: Movie[];
 }) {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0f0f12] via-[#111827] to-[#0f0f12]">
+    <section className="py-20 bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
       <div className="flex w-full overflow-x-auto scrollbar-hide gap-6">
         {trendingMovies.map((movie) => (
           <MovieCard

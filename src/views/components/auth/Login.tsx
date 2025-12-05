@@ -20,13 +20,13 @@ export default function LoginView() {
   const isLoading = status === "loading";
 
   return (
-    <div className="min-h-screen bg-[#0f0f12] flex">
+    <div className="min-h-screen bg-gray-950 flex">
       {/* Left Side - Form */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-md">
           <button
             onClick={() => router.push("/")}
-            className="flex items-center gap-2 text-[#94a3b8] hover:text-white mb-12 transition-colors group"
+            className="flex items-center gap-2 text-slate-400 hover:text-white mb-12 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to home</span>
@@ -34,7 +34,7 @@ export default function LoginView() {
 
           <div className="mb-8">
             <h1 className="mb-3">Welcome back</h1>
-            <p className="text-[#94a3b8]">
+            <p className="text-slate-400">
               Sign in to your account to continue your movie journey
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function LoginView() {
               <span>Continue with Google</span>
             </button>
 
-            <button className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-[#1877f2] hover:bg-[#166fe5] text-white rounded-xl transition-all duration-200">
+            <button className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-blue-400 hover:bg-blue-500 text-white rounded-xl transition-all duration-200">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
@@ -79,10 +79,10 @@ export default function LoginView() {
 
           <div className="relative mb-8">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-[#334155]"></div>
+              <div className="w-full border-t border-slate-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-[#0f0f12] text-[#94a3b8]">
+              <span className="px-4 bg-gray-950 text-slate-400">
                 Or continue with email
               </span>
             </div>
@@ -93,16 +93,16 @@ export default function LoginView() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm mb-2 text-[#94a3b8]"
+                className="block text-sm mb-2 text-slate-400"
               >
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#94a3b8]" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                 <input
                   type="email"
                   id="email"
-                  className="w-full pl-12 pr-4 py-4 bg-[#1e293b] border border-[#334155] rounded-xl focus:outline-none focus:border-[#e11d48] transition-colors text-white"
+                  className="w-full pl-12 pr-4 py-4 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-rose-600 transition-colors text-white"
                   placeholder="you@example.com"
                   required
                 />
@@ -112,16 +112,16 @@ export default function LoginView() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm mb-2 text-[#94a3b8]"
+                className="block text-sm mb-2 text-slate-400"
               >
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#94a3b8]" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                 <input
                   type="password"
                   id="password"
-                  className="w-full pl-12 pr-4 py-4 bg-[#1e293b] border border-[#334155] rounded-xl focus:outline-none focus:border-[#e11d48] transition-colors text-white"
+                  className="w-full pl-12 pr-4 py-4 bg-slate-800 border border-slate-700 rounded-xl focus:outline-none focus:border-rose-600 transition-colors text-white"
                   placeholder="••••••••"
                   required
                 />
@@ -132,13 +132,13 @@ export default function LoginView() {
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-[#334155] bg-[#1e293b] text-[#e11d48] focus:ring-[#e11d48] focus:ring-offset-0"
+                  className="w-4 h-4 rounded border-slate-700 bg-slate-800 text-rose-600 focus:ring-rose-600 focus:ring-offset-0"
                 />
-                <span className="text-sm text-[#94a3b8]">Remember me</span>
+                <span className="text-sm text-slate-400">Remember me</span>
               </label>
               <a
                 href="#"
-                className="text-sm text-[#e11d48] hover:text-[#be123c] transition-colors"
+                className="text-sm text-rose-600 hover:text-rose-700 transition-colors"
               >
                 Forgot password?
               </a>
@@ -146,15 +146,15 @@ export default function LoginView() {
 
             <button
               type="submit"
-              className="w-full py-4 bg-[#e11d48] hover:bg-[#be123c] text-white rounded-xl transition-all duration-200 shadow-lg shadow-[#e11d48]/30 hover:shadow-xl hover:shadow-[#e11d48]/40"
+              className="w-full py-4 bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-all duration-200 shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40"
             >
               Sign In
             </button>
           </form>
 
-          <p className="mt-6 text-center text-[#94a3b8]">
+          <p className="mt-6 text-center text-slate-400">
             Don't have an account?{" "}
-            <button className="text-[#e11d48] hover:text-[#be123c] transition-colors">
+            <button className="text-rose-600 hover:text-rose-700 transition-colors">
               Sign up
             </button>
           </p>
@@ -169,8 +169,8 @@ export default function LoginView() {
           fill
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f12] via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[#e11d48]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-rose-600/10" />
       </div>
     </div>
   );
