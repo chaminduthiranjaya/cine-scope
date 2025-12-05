@@ -1,12 +1,12 @@
 "use client";
+import { toBase64, useShimmer } from "@/lib/hooks/shimmer";
 import { MovieCardProps } from "@/lib/interfaces/movie.interface";
-import { shimmer, toBase64 } from "@/lib/shimmer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addToWatchList, removeFromWatchList } from "@/store/watchListSlice";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import placeholder from "../../../../public/images/movie_poster_fallback.png";
-import { addToWatchList, removeFromWatchList } from "@/store/watchListSlice";
 
 export default function MovieCard({
   movie,
@@ -42,7 +42,7 @@ export default function MovieCard({
             height={450}
             placeholder={useBlurPlaceholder ? "blur" : "empty"}
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
-              shimmer(300, 450)
+              useShimmer(300, 450)
             )}`}
             onError={() => setIsErrLoad(true)}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
