@@ -1,6 +1,6 @@
 "use client";
-import { useDebounce } from "@/views/hooks/useDebounce";
-import { Filter, Search } from "lucide-react";
+import { useDebounce } from "@/lib/hooks/useDebounce";
+import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Props = {

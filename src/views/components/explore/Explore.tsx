@@ -2,7 +2,7 @@
 import MovieCard from "@/lib/components/movie/MovieCard";
 import Pagination from "@/lib/components/movie/Pagination";
 import SearchFilter from "@/lib/components/movie/SearchFilter";
-import { useMovieListQuery } from "@/views/hooks/useMovieListQuery";
+import { useMovieListQuery } from "@/lib/hooks/useMovieListQuery";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useRef } from "react";
 import type { ExploreProps } from "./explore.interface";

@@ -54,9 +54,6 @@ export async function getMovieList({
           page,
           language: DEFAULT_LANGUAGE,
         },
-        fetch: {
-          next: { revalidate: isSearch ? 0 : 3600, tags: ["movie-list"] },
-        },
       }
     );
     return {

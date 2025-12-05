@@ -1,11 +1,11 @@
 import { authOptions } from "@/lib/auth/options";
-import { AuthSessionProvider } from "@/lib/components/layout/AuthSessionProvider";
+import { AuthSessionProvider } from "@/lib/providers/AuthSessionProvider";
+import { ReduxProvider } from "@/lib/providers/ReduxProvider";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
 import "../styles/globals.css";
-import { ReduxProvider } from "@/lib/components/layout/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
