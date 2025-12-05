@@ -19,7 +19,7 @@ export async function proxy(req: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (pathname === "/login" || (pathname === "/register" && token)) {
+  if ((pathname === "/login" || pathname === "/register") && token) {
     const redirectUrl = new URL("/", req.url);
     return NextResponse.redirect(redirectUrl);
   }

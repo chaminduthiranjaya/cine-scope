@@ -5,16 +5,17 @@ import { FAQ, PRICING_PLANS } from "./constants";
 
 export default function Pricing() {
   return (
-    <div className="min-h-screen bg-gray-950 pt-20">
+    <div className="min-h-screen bg-[#0f0f12] pt-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="text-center mb-20">
           <h1 className="mb-6">Choose your plan</h1>
           <p className="text-slate-400 text-xl max-w-2xl mx-auto">
-            Start for free, upgrade when you need more. All plans include a 14-day free trial.
+            Start for free, upgrade when you need more. All plans include a
+            14-day free trial.
           </p>
         </div>
 
-       {/* Pricing Cards */}
+        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {PRICING_PLANS.map((plan) => {
             const Icon = plan.icon;
@@ -37,12 +38,16 @@ export default function Pricing() {
                     <div className="absolute inset-0 bg-gradient-to-br opacity-20 rounded-3xl blur-xl from-rose-600 to-rose-700" />
                   )}
 
-                  <div className={`relative p-8 rounded-3xl border-2 h-full flex flex-col ${
-                    plan.popular
-                      ? "border-rose-600 bg-gradient-to-br from-slate-800/80 to-gray-900/80"
-                      : "border-slate-700 hover:border-rose-600/50"
-                  } transition-colors duration-300`}>
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`relative p-8 rounded-3xl border-2 h-full flex flex-col ${
+                      plan.popular
+                        ? "border-rose-600 bg-gradient-to-br from-slate-800/80 to-gray-900/80"
+                        : "border-slate-700 hover:border-rose-600/50"
+                    } transition-colors duration-300`}
+                  >
+                    <div
+                      className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${plan.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <Icon className="w-7 h-7 text-white" />
                     </div>
 

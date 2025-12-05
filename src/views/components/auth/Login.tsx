@@ -20,7 +20,7 @@ export default function LoginView() {
   const isLoading = status === "loading";
 
   return (
-    <div className="min-h-screen bg-gray-950 flex">
+    <div className="min-h-screen bg-[#0f0f12] flex">
       {/* Left Side - Form */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-md">
@@ -82,7 +82,7 @@ export default function LoginView() {
               <div className="w-full border-t border-slate-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-gray-950 text-slate-400">
+              <span className="px-4 bg-[#0f0f12] text-slate-400">
                 Or continue with email
               </span>
             </div>
@@ -169,7 +169,7 @@ export default function LoginView() {
           fill
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-950 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f12] via-transparent to-transparent" />
         <div className="absolute inset-0 bg-rose-600/10" />
       </div>
     </div>
