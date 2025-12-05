@@ -1,4 +1,5 @@
 "use client";
+import { useAppSelector } from "@/store/hooks";
 import clsx from "clsx";
 import { Film } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
@@ -10,6 +11,10 @@ export function Header() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const isAuthenticated = status === "authenticated";
+
+  const watchlistCount = useAppSelector(
+    (state) => Object.keys(state.watchList.items).length
+  );
 
   function handleAuthClick() {
     if (isAuthenticated) {
@@ -84,6 +89,14 @@ export function Header() {
             >
               {isAuthenticated ? "Sign Out" : "Sign In"}
             </button>
+            {isAuthenticated && watchlistCount > 0 && (
+              <Link
+                href="/watchlist"
+                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/70 border border-slate-700/60 text-xs text-slate-200 hover:border-rose-600 transition-colors"
+              >
+                <span>Watchlist ({watchlistCount})</span>
+              </Link>
+            )}
             {!isAuthenticated && (
               <Link
                 href="/login"

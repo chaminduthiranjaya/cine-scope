@@ -13,7 +13,7 @@ export default function TrendingMoviesList({
           <MovieCard
             key={movie.id}
             movie={movie}
-            displayAddToWatchlistButton={false}
+            displayAddToWatchlistButton={true}
           />
         ))}
       </div>
