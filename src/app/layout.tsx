@@ -1,11 +1,12 @@
 import { authOptions } from "@/lib/auth/options";
+import FloatingAiAssistant from "@/lib/components/layout/FloatingAiAssistant";
 import { AuthSessionProvider } from "@/lib/providers/AuthSessionProvider";
 import { ReduxProvider } from "@/lib/providers/ReduxProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Geist } from "next/font/google";
 import localFont from "next/font/local";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "../styles/globals.css";
 
 const geistSans = Geist({
@@ -35,6 +36,7 @@ export default async function RootLayout({
         <AuthSessionProvider session={session}>
           <ReduxProvider>
             {children}
+            <FloatingAiAssistant />
             <SpeedInsights />
             {/*Speed Insights in Vercel to Validate Performance*/}
           </ReduxProvider>

@@ -54,6 +54,7 @@ export interface MovieCardProps {
 export interface GetMovieListParams {
   page: number;
   query?: string;
+  year?: string;
 };
 
 export interface PaginationProps {
@@ -67,3 +68,17 @@ export interface UseMovieListQueryParams {
   page: number;
   initialData?: MovieListResponse;
 };
+
+export interface AiMovieExtraction {
+  primary_title?: string;
+  alternative_titles?: string[];
+  year?: string;
+  query: string;
+}
+
+export interface AiMovieQueryResult {
+  status: "not_found" | "not_exact_match" | "found";
+  reason?: string;
+  suggestion?: string[];
+  results?: MovieListResponse;
+}

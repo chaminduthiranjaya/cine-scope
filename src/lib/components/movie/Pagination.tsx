@@ -39,6 +39,9 @@ export default function Pagination({
   const pages = getPaginationItems(currentPage, totalPages);
   return (
     <div className="flex items-center justify-center gap-3 mt-10">
+      <span className="sr-only">
+        Paginations, click to navigate to next or previous page
+      </span>
       {pages.map((item, idx) =>
         item === "..." ? (
           <span key={`ellipsis-${idx}`} className="px-3 text-slate-400">

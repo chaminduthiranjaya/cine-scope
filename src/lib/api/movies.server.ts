@@ -40,9 +40,15 @@ export async function getTrendingMovies(
   }
 }
 
+/**
+ * Fetches movie list from TMDB API
+ * @param param0 - Page number and search query
+ * @returns Promise resolving to movie list response
+ */
 export async function getMovieList({
   page,
   query,
+  year,
 }: GetMovieListParams): Promise<MovieListResponse> {
   try {
     const isSearch = !!query && query.trim().length > 0;
@@ -53,6 +59,7 @@ export async function getMovieList({
           query,
           page,
           language: DEFAULT_LANGUAGE,
+          ...(year && { year }),
         },
       }
     );
