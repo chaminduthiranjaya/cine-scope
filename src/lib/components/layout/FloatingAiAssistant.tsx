@@ -38,7 +38,7 @@ export default function FloatingAiAssistant() {
   }
 
   const movies: Movie[] =
-    data?.status === "found" ? data.results.movies.slice(0, 5) : [];
+    data?.status === "found" ? data?.results?.movies?.slice(0, 5) || [] : [];
 
   return (
     <>
@@ -141,27 +141,28 @@ export default function FloatingAiAssistant() {
                       Top matches
                     </p>
                     <div className="space-y-2">
-                      {movies.map((m) => (
-                        <button
-                          key={m.id}
-                          onClick={() => onMovieClick(m.id)}
-                          className="w-full text-left rounded-xl border border-slate-800 hover:border-rose-600/70 bg-slate-950/40 hover:bg-slate-950/60 px-3 py-2 transition-colors"
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-slate-100">
-                              {m.title}
-                            </span>
-                            <span className="text-xs text-slate-400">
-                              {m.releaseYear}
-                            </span>
-                          </div>
-                          {m.overview ? (
-                            <p className="mt-1 text-xs text-slate-400 line-clamp-2">
-                              {m.overview}
-                            </p>
-                          ) : null}
-                        </button>
-                      ))}
+                      {movies &&
+                        movies.map((m) => (
+                          <button
+                            key={m.id}
+                            onClick={() => onMovieClick(m.id)}
+                            className="w-full text-left rounded-xl border border-slate-800 hover:border-rose-600/70 bg-slate-950/40 hover:bg-slate-950/60 px-3 py-2 transition-colors"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-slate-100">
+                                {m.title}
+                              </span>
+                              <span className="text-xs text-slate-400">
+                                {m.releaseYear}
+                              </span>
+                            </div>
+                            {m.overview ? (
+                              <p className="mt-1 text-xs text-slate-400 line-clamp-2">
+                                {m.overview}
+                              </p>
+                            ) : null}
+                          </button>
+                        ))}
                     </div>
                   </div>
                 )}
