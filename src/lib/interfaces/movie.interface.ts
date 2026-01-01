@@ -1,6 +1,6 @@
 export interface ApiMovie {
   id: number;
-  title?: string;
+  title: string;
   name?: string;
   overview?: string | null;
   poster_path: string | null;
@@ -14,7 +14,7 @@ export interface ApiMovie {
 
 export interface Movie {
   id: number;
-  title?: string;
+  title: string;
   name?: string;
   overview?: string;
   poster: string;

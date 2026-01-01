@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToWatchList, removeFromWatchList } from "@/store/watchListSlice";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import placeholder from "../../../../public/images/movie_poster_fallback.png";
 
@@ -20,11 +21,7 @@ export default function MovieCard({
     (state) => !!state.watchList.items[movie.id]
   );
 
-  function addToWatchlist(
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLButtonElement>
-  ) {
+  function addToWatchlist() {
     if (isInWatchlist) {
       dispatch(removeFromWatchList(movie.id));
     } else {
@@ -32,7 +29,10 @@ export default function MovieCard({
     }
   }
   return (
-    <div className="flex-shrink-0 w-60 group cursor-pointer">
+    <Link
+      href={`/movie/${movie.id}`}
+      className="flex-shrink-0 w-60 group cursor-pointer"
+    >
       <div className="relative mb-4 rounded-2xl overflow-hidden">
         <div className="aspect-[2/3] relative">
           <Image
@@ -71,6 +71,6 @@ export default function MovieCard({
         {movie.title}
       </h3>
       <p className="text-sm text-slate-400">{movie.releaseYear}</p>
-    </div>
+    </Link>
   );
 }

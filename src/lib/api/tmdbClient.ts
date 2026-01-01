@@ -50,6 +50,12 @@ export async function callTMDB<TResponse>(
 
   const baseInit: RequestInit = {
     method,
+    ...(fetchOptions.next && {
+      next: {
+        revalidate: fetchOptions.next?.revalidate,
+        tags: fetchOptions.next?.tags,
+      },
+    }),
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${TMDB_BEARER}`,

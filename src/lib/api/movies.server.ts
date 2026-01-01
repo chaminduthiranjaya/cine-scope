@@ -79,3 +79,17 @@ export async function getMovieList({
     };
   }
 }
+
+export async function getMovieDetails(id: number): Promise<Movie> {
+  try {
+    const data = await callTMDB<ApiMovie>(`movie/${id}`, {
+      params: { language: "en-US" },
+      fetch: { next: { revalidate: 86400, tags: [`movie-${id}`] } },
+    });
+
+    return formatMovie(data);
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw new Error(`Movie with ID ${id} not found`);
+  }
+}
