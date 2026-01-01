@@ -1,37 +1,55 @@
-import { InferenceClient } from "@huggingface/inference";
 import "server-only";
 
-const HF_API_KEY = process.env.HUGGINGFACE_API_KEY;
-
-if (!HF_API_KEY) {
-  throw new Error("HUGGINGFACE_API_KEY is not set");
-}
-
-// Free open-source model
-const MODEL = "mistralai/Mistral-7B-Instruct";
+const HF_TOKEN = process.env.HUGGINGFACE_API_KEY;
+if (!HF_TOKEN) throw new Error("HUGGINGFACE_API_KEY is not set");
 
 /**
- * Calls HuggingFace API to generate text based on the given prompt
- * @param prompt - The prompt to generate text from
- * @returns The generated text
+ * IMPORTANT:
+ * - Use a model that works for you with a provider suffix.
+ * - You said "it works" already, so keep that same model string here.
  */
-export async function callHuggingFace(prompt: string) {
-  const client = new InferenceClient(HF_API_KEY);
+const MODEL = "HuggingFaceTB/SmolLM3-3B:hf-inference";
 
-  const res = await client.textGeneration({
-    model: MODEL,
-    inputs: prompt,
-    parameters: {
-      max_new_tokens: 350,
-      temperature: 0.2,
-      return_full_text: false,
+type HFChatResponse = {
+  choices?: Array<{ message?: { content?: string } }>;
+  error?: { message?: string };
+};
+
+export async function callHuggingFace(prompt: string): Promise<string> {
+  const res = await fetch("https://router.huggingface.co/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${HF_TOKEN}`,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      model: MODEL,
+      messages: [
+        {
+          role: "system",
+          content:
+            'Return the movie name in the format {"title": "Movie Name"} and add {"year": "Year"} if available also add {"alternatives": ["Title1", "Title2"]} if available. reutn only the json object.',
+        },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0,
+      top_p: 1,
+      max_tokens: 250,
+    }),
   });
 
+  const data = (await res.json().catch(() => null)) as HFChatResponse | null;
+  console.log(data?.choices?.[0]?.message);
+
   if (!res.ok) {
-    console.error("HF error:", res.status);
-    throw new Error("HuggingFace request failed");
+    throw new Error(
+      data?.error?.message || `HF chat completion failed (${res.status})`
+    );
   }
 
-  return (res.generated_text ?? "").trim();
+  const text = data?.choices?.[0]?.message?.content?.trim();
+  console.log("**********");
+  if (!text) throw new Error("No content returned from HF chat completion");
+
+  return text;
 }

@@ -1,16 +1,22 @@
-import {
-  resolveMovieQuery
-} from "@/lib/api/hfPromptResolver.server";
-import {
-  AiMovieQueryResult
-} from "@/lib/interfaces/movie.interface";
+import { resolveMovieQuery } from "@/lib/api/hfPromptResolver.server";
+import type { AiMovieQueryResult } from "@/lib/interfaces/movie.interface";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { description }: { description: string } = await req.json();
-    const res: AiMovieQueryResult = await resolveMovieQuery(description);
+    const body = (await req.json().catch(() => null)) as {
+      description?: string;
+    } | null;
 
+    const description = (body?.description ?? "").trim();
+    if (!description) {
+      return NextResponse.json(
+        { error: "description is required" },
+        { status: 400 }
+      );
+    }
+
+    const res: AiMovieQueryResult = await resolveMovieQuery(description);
     return NextResponse.json(res);
   } catch (error) {
     console.error("Error resolving movie request: ", error);
