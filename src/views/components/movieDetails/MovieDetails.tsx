@@ -40,7 +40,7 @@ export default function MovieDetails({ movie }: { movie: Movie }) {
                   src={movie.poster}
                   alt={movie.title}
                   width={300}
-            height={450}
+                  height={450}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -144,7 +144,7 @@ export default function MovieDetails({ movie }: { movie: Movie }) {
           <div className="bg-gradient-to-br from-[#1e293b] to-[#111827] rounded-3xl p-8 border border-[#334155]">
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <div className="text-6xl mb-2">{movie.rating}</div>
+                <div className="text-6xl mb-2">{movie.voteAverage}</div>
                 <div className="flex items-center gap-2 mb-4">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
