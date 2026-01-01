@@ -7,15 +7,18 @@ export default function TrendingMoviesList({
   trendingMovies: Movie[];
 }) {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0f0f12] via-[#111827] to-[#0f0f12]">
-      <div className="flex w-full overflow-x-auto scrollbar-hide gap-6">
-        {trendingMovies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            displayAddToWatchlistButton={true}
-          />
-        ))}
+    <section className="py-20 px-6 lg:px-12 bg-gradient-to-b from-[#0f0f12] via-[#111827] to-[#0f0f12] w-full flex justify-center">
+      <div className="max-w-[1400px] w-full">
+        {" "}
+        <div className="flex overflow-x-auto scrollbar-hide gap-6">
+          {trendingMovies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              displayAddToWatchlistButton={true}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
