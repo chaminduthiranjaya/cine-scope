@@ -72,12 +72,12 @@ export default function MovieDetails({ movie }: { movie: Movie }) {
               </div>
 
               <div className="flex flex-wrap gap-3 mb-8">
-                {genres.map((genre, index) => (
+                {movie.genres?.map((genre, index) => (
                   <span
                     key={index}
                     className="px-4 py-1.5 bg-[#1e293b] border border-[#334155] rounded-lg text-sm"
                   >
-                    {genre}
+                    {genre.name}
                   </span>
                 ))}
               </div>
@@ -106,14 +106,7 @@ export default function MovieDetails({ movie }: { movie: Movie }) {
         <section className="mb-16">
           <h2 className="mb-6">Synopsis</h2>
           <p className="text-[#94a3b8] leading-relaxed max-w-4xl">
-            In a distant future where humanity has colonized the outer reaches
-            of space, a lone explorer discovers an ancient alien artifact that
-            holds the key to unlocking the secrets of the universe. As powerful
-            forces race to claim this discovery, she must navigate treacherous
-            alliances and uncover the truth about humanity's origins before it's
-            too late. A stunning visual journey that combines breathtaking
-            special effects with a deeply emotional story about identity,
-            belonging, and the price of knowledge.
+            {movie.overview}
           </p>
         </section>
 
@@ -153,7 +146,9 @@ export default function MovieDetails({ movie }: { movie: Movie }) {
                     />
                   ))}
                 </div>
-                <p className="text-[#94a3b8]">Based on 47,392 reviews</p>
+                <p className="text-[#94a3b8]">
+                  Based on {movie.voteCount} reviews
+                </p>
               </div>
               <div className="space-y-3">
                 {[

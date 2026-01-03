@@ -16,6 +16,7 @@ export function formatMovie(movie: ApiMovie): Movie {
     voteAverage: movie.vote_average?.toFixed(1),
     voteCount: movie.vote_count,
     popularity: movie.popularity,
+    genres: movie.genres,
     genreIds: movie.genre_ids,
     id: movie.id,
     title: movie.title,

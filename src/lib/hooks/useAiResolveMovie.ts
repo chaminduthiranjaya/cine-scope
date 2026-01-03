@@ -8,9 +8,11 @@ export function useAiResolveMovie() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function resolve(description: string) {
+  async function resolve(
+    description: string
+  ): Promise<AiMovieQueryResult | null> {
     const trimmed = description.trim();
-    if (!trimmed) return;
+    if (!trimmed) return null;
 
     setIsLoading(true);
     setError(null);

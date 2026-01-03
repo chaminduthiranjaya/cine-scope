@@ -4,7 +4,10 @@ import { useState } from "react";
 import { MessageCircle, Search, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAiResolveMovie } from "@/lib/hooks/useAiResolveMovie";
-import type { Movie } from "@/lib/interfaces/movie.interface";
+import type {
+  AiMovieQueryResult,
+  Movie,
+} from "@/lib/interfaces/movie.interface";
 
 export default function FloatingAiAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +15,7 @@ export default function FloatingAiAssistant() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const { data, error, isLoading, resolve } = useAiResolveMovie();
+  const { data, error, isLoading, resolve, reset } = useAiResolveMovie();
 
   // Optional: hide on login/signup
   const isAuthPage = pathname === "/login" || pathname === "/register";
@@ -20,21 +23,19 @@ export default function FloatingAiAssistant() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const res = await resolve(value);
+    const res: AiMovieQueryResult | null = await resolve(value);
 
-    // Next step later: auto navigate if only one strong match
-    // For now we just show results in the panel.
-    // Example later:
-    // if (res?.status === "found" && res.results.movies.length === 1) {
-    //   router.push(`/movie/${res.results.movies[0].id}`);
-    //   setIsOpen(false);
-    // }
+    if (res?.status === "found" && res?.results?.movies?.length === 1) {
+      router.push(`/movie/${res.results.movies[0].id}`);
+      setIsOpen(false);
+    }
   }
 
   function onMovieClick(movieId: number) {
-    // Next step: your detail page route
     router.push(`/movie/${movieId}`);
     setIsOpen(false);
+    setValue("");
+    reset();
   }
 
   const movies: Movie[] =
@@ -115,7 +116,7 @@ export default function FloatingAiAssistant() {
                   </div>
                 )}
 
-                {data?.status === "not_exact_match" && (
+                {data?.status === "partial_found" && (
                   <div className="text-sm text-slate-300">
                     <p className="font-medium">Not an exact match</p>
                     <p className="text-xs text-slate-400">{data.reason}</p>
@@ -137,9 +138,26 @@ export default function FloatingAiAssistant() {
 
                 {data?.status === "found" && (
                   <div>
-                    <p className="text-sm font-medium text-slate-100 mb-2">
-                      Top matches
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm font-medium text-slate-100 mb-2">
+                        Top matches
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          reset();
+                          setValue("");
+                        }}
+                        disabled={
+                          isLoading || !value.trim() || movies.length === 0
+                        }
+                        className="text-xs rounded-sm bg-rose-600 px-1 py-1 text-white hover:bg-rose-700 disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-1"
+                      >
+                        Reset
+                      </button>
+                    </div>
+
                     <div className="space-y-2">
                       {movies &&
                         movies.map((m) => (

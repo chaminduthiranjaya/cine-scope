@@ -9,6 +9,7 @@ export interface ApiMovie {
   vote_count?: number;
   release_date?: string;
   popularity?: number;
+  genres?: { id: number; name: string }[];
   genre_ids?: number[];
 }
 
@@ -24,6 +25,7 @@ export interface Movie {
   releaseDate?: string;
   releaseYear?: number;
   popularity?: number;
+  genres?: { id: number; name: string }[];
   genreIds?: number[];
 }
 
@@ -55,19 +57,19 @@ export interface GetMovieListParams {
   page: number;
   query?: string;
   year?: string;
-};
+}
 
 export interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-};
+}
 
 export interface UseMovieListQueryParams {
   searchKey: string;
   page: number;
   initialData?: MovieListResponse;
-};
+}
 
 export interface AiMovieExtraction {
   primary_title?: string;
@@ -77,7 +79,7 @@ export interface AiMovieExtraction {
 }
 
 export interface AiMovieQueryResult {
-  status: "not_found" | "not_exact_match" | "found";
+  status: "not_found" | "partial_found" | "found";
   reason?: string;
   suggestion?: string[];
   results?: MovieListResponse;
