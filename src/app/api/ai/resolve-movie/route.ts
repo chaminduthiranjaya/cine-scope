@@ -14,11 +14,10 @@ export async function POST(req: Request): Promise<NextResponse> {
       });
     }
 
-    console.log(ai.primary_title, ai.year);
-
     const results = await getMovieList({
       page: 1,
-      query: ai.primary_title || ai.query,
+      query:
+        ai.intent === "movie_lookup" ? ai.primary_title || ai.query : ai.query, // TODO :: TMDB doesn't support phrase search
     });
 
     if (results.movies.length === 0) {

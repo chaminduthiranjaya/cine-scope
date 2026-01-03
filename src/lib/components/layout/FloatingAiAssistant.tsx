@@ -80,7 +80,7 @@ export default function FloatingAiAssistant() {
               </button>
             </div>
 
-            <div className="p-4">
+            <div className="p-4 scrollbar scrollbar-thin max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-track-gray-500 scrollbar-thumb-gray-600">
               <form onSubmit={onSubmit} className="flex gap-2">
                 <input
                   value={value}
