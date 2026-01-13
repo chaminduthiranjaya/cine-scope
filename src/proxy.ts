@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-const PROTECTED_ROUTES = ["/explore", "/watchlist"];
+const PROTECTED_ROUTES = ["/explore", "/watchlist", "/movie"];
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -28,5 +28,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/explore", "/watchlist"],
+  matcher: ["/login", "/register", "/explore", "/watchlist", "/movie"],
 };
